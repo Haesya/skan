@@ -1,3 +1,36 @@
+header {
+  display: grid;
+  grid-area: header;
+  grid-template-columns: minmax(16px, auto) minmax(288px, 1235px) minmax(16px, auto);
+  grid-template-areas: ". hc ."; }
 
+.header__content {
+  grid-area: hc;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px; }
+
+.header__content > div {
+  align-content: center; }
+
+.logo > img {
+  height: 45px; }
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px; }
+
+li {
+  list-style: none; }
+
+.using__companies {
+  display: none; }
+
+.authorization {
+  display: flex; }
+
+.user {
+  display: none; }
 
 /*# sourceMappingURL=header.module.css.map */

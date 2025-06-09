@@ -1,3 +1,30 @@
+footer {
+  display: grid;
+  grid-area: footer;
+  grid-template-columns: minmax(16px, auto) minmax(288px, 1235px) minmax(16px, auto);
+  grid-template-areas: ". fc .";
+  background-color: #029491;
+  height: 138px; }
 
+.footer__content {
+  grid-area: fc;
+  display: flex;
+  justify-content: space-between;
+  text-align: right; }
+
+.logo > img {
+  height: 140px; }
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 25px; }
+
+.contacts {
+  display: flex;
+  flex-direction: column; }
 
 /*# sourceMappingURL=footer.module.css.map */
