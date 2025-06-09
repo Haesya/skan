@@ -15,7 +15,8 @@ header {
   padding: 10px;
 }
 
-.header__content >div {
+.header__content > div {
+  flex-wrap: wrap;
   align-content: center;
 }
 
@@ -23,23 +24,54 @@ header {
   height: 45px;
 }
 
-ul {
+.sections > ul {
   display: flex;
   justify-content: space-between;
   gap: 40px;
-
 }
 
 li {
   list-style: none;
+  cursor: pointer;
 }
 
-.using__companies {
+.companies {
   display: none;
 }
 
+.limit {
+  color: #8ac540;
+  font-size: 14px;
+}
+
+.burger__menu > img {
+  width: 40px;
+  height: 40px;
+}
+
 .authorization{
-  display: flex;
+  gap: 18px;
+}
+
+.register {
+  cursor: pointer;
+}
+
+.stick{
+  width: 2px;
+  height: 26px;
+  background-color: $main__color__green;
+}
+
+.login{
+  border: none;
+  border-radius: 5px;
+  color: $main__color__black;
+  background-color: $main__color__green;
+  padding: 5px 10px;
+  height: fit-content;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .user {

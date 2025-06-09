@@ -1,3 +1,18 @@
+@media screen and (min-width: 1px) {
+  .sections {
+    display: none; }
+
+  .authorization {
+    display: none; } }
+@media screen and (min-width: 768px) {
+  .sections {
+    display: flex; }
+
+  .authorization {
+    display: flex; }
+
+  .burger__menu {
+    display: none; } }
 footer {
   display: grid;
   grid-area: footer;
