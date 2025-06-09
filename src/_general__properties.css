@@ -1,4 +1,9 @@
 @media screen and (min-width: 1px) {
+  .authorization__main {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; }
+
   .sections {
     display: none; }
 
@@ -13,5 +18,16 @@
 
   .burger__menu {
     display: none; } }
+@media screen and (min-width: 1024px) {
+  .authorization__main {
+    flex-direction: row; } }
+@font-face {
+  font-family: "Inter-regular";
+  src: local("Inter-regular"), url("Inter-regular.otf") format("woff"); }
+@font-face {
+  font-family: "ferry_black";
+  src: local("ferry_black"), url("ferry_black.otf") format("woff"); }
+* {
+  font-family: Inter-regular, sans-serif; }
 
 /*# sourceMappingURL=_general__properties.css.map */

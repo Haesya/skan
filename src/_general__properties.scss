@@ -7,3 +7,19 @@ $main__color__white: #FFFFFF;
 $other__color__yellow: #FFB64F;
 $other__color__green: #7CE3E1;
 $other__color__blue: #5970FF;
+
+@font-face {
+  font-family: "Inter-regular";
+  src: local("Inter-regular"),
+  url("Inter-regular.otf") format("woff");
+}
+
+@font-face {
+  font-family: "ferry_black";
+  src: local("ferry_black"),
+  url("ferry_black.otf") format("woff");
+}
+
+* {
+  font-family: Inter-regular, sans-serif;
+}

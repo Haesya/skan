@@ -1,0 +1,119 @@
+@import '../../_general__properties.scss';
+
+.authorization__main {
+  grid-area: main;
+  display: flex;
+  margin-top: 20px;
+}
+
+.picture{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+}
+
+.big__text{
+  font-family: ferry_black, sans-serif;
+  font-size: 40px;
+}
+
+.picture > img {
+  width: 322px;
+  height: 342px;
+}
+
+.login {
+  width: 40%;
+}
+
+.login__content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  height: fit-content;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 38% 58%;
+  justify-content: space-between;
+}
+
+.buttons > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+}
+
+.choose {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.stick{
+  height: 2px;
+  background-color: $main__color__green;
+  width: 100%;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  color: #949494;
+}
+
+.inputs > input {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.check__login {
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5970FF;
+  color: #FFFFFF;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.recover {
+  background-color: transparent;
+  border: none;
+  color: #5970FF;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.additional__input {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.methods {
+  display: flex;
+  gap: 10px;
+}
+
+.methods > button {
+  border: 1px solid #5970FF;
+  border-radius: 4px;
+  padding: 6px 18px;
+  cursor: pointer;
+  background-color: transparent;
+}

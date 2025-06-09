@@ -1,4 +1,9 @@
 @media screen and (min-width: 1px) {
+  .authorization__main {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; }
+
   .sections {
     display: none; }
 
@@ -13,5 +18,8 @@
 
   .burger__menu {
     display: none; } }
+@media screen and (min-width: 1024px) {
+  .authorization__main {
+    flex-direction: row; } }
 
 /*# sourceMappingURL=_all__media.css.map */

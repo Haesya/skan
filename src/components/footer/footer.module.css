@@ -1,4 +1,9 @@
 @media screen and (min-width: 1px) {
+  .authorization__main {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; }
+
   .sections {
     display: none; }
 
@@ -13,19 +18,33 @@
 
   .burger__menu {
     display: none; } }
+@media screen and (min-width: 1024px) {
+  .authorization__main {
+    flex-direction: row; } }
+@font-face {
+  font-family: "Inter-regular";
+  src: local("Inter-regular"), url("Inter-regular.otf") format("woff"); }
+@font-face {
+  font-family: "ferry_black";
+  src: local("ferry_black"), url("ferry_black.otf") format("woff"); }
+* {
+  font-family: Inter-regular, sans-serif; }
+
 footer {
   display: grid;
   grid-area: footer;
   grid-template-columns: minmax(16px, auto) minmax(288px, 1235px) minmax(16px, auto);
   grid-template-areas: ". fc .";
   background-color: #029491;
-  height: 138px; }
+  height: 138px;
+  margin-top: 20px; }
 
 .footer__content {
   grid-area: fc;
   display: flex;
   justify-content: space-between;
-  text-align: right; }
+  text-align: right;
+  overflow: hidden; }
 
 .logo > img {
   height: 140px; }

@@ -8,6 +8,7 @@ footer{
             ". fc .";
   background-color: $main__color__green;
   height: 138px;
+  margin-top: 20px;
 }
 
 .footer__content {
@@ -15,6 +16,7 @@ footer{
   display: flex;
   justify-content: space-between;
   text-align: right;
+  overflow: hidden;
 }
 
 .logo > img {

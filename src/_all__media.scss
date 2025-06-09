@@ -1,4 +1,10 @@
 @media screen and (min-width: 1px) {
+  .authorization__main {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
   .sections {
     display: none;
   }
@@ -27,7 +33,9 @@
 }
 
 @media screen and (min-width: 1024px) {
-
+  .authorization__main {
+    flex-direction: row;
+  }
 }
 
 @media screen and (min-width: 1440px) {
