@@ -1,0 +1,20 @@
+@import '../../_general__properties.scss';
+
+.block__for__slider {
+  display: flex;
+}
+
+.slider {
+  display: flex;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button > img {
+  width: 40px;
+  height: 40px;
+}

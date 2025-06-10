@@ -54,7 +54,7 @@ header {
   justify-content: space-between;
   gap: 40px; }
 
-li {
+.sections > ul > li {
   list-style: none;
   cursor: pointer; }
 

@@ -1,11 +1,11 @@
 import './App.css'
-import {RenderAuthorization} from "./components/authorization/autorization.tsx";
+import {RenderMainPage} from "./components/MAIN__PAGE/main__page.tsx";
 
 function App() {
 
     return (
         <>
-            <RenderAuthorization />
+            <RenderMainPage />
         </>
     )
 }

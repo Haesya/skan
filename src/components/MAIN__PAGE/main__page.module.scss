@@ -1,0 +1,64 @@
+@import '../../_general__properties.scss';
+
+.main__page__main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.service {
+  display: grid;
+  grid-template-columns: 58% 40%;
+  margin-top: 60px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service__text {
+  font-family: ferry_black, sans-serif;
+  font-size: 60px;
+}
+
+.take__data{
+  width: fit-content;
+  color: $main__color__white;
+  background-color: $other__color__blue;
+  border: none;
+  border-radius: 5px;
+  padding: 14px 64px;
+}
+
+.picture > img {
+  width: 100%;
+}
+
+.slider__reasons > span {
+  font-family: ferry_black, sans-serif;
+  font-size: 45px;
+}
+
+.just__picture{
+  width: 100%;
+}
+
+.our__tariffs {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.our__tariffs__text {
+  font-family: ferry_black, sans-serif;
+  font-size: 45px;
+}
+
+.tariffs{
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}

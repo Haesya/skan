@@ -85,7 +85,7 @@ label {
   height: 60px;
   border: none;
   border-radius: 5px;
-  background-color: #5970FF;
+  background-color: $other__color__blue;
   color: #FFFFFF;
   font-size: 22px;
   cursor: pointer;
@@ -94,7 +94,7 @@ label {
 .recover {
   background-color: transparent;
   border: none;
-  color: #5970FF;
+  color: $other__color__blue;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -111,7 +111,7 @@ label {
 }
 
 .methods > button {
-  border: 1px solid #5970FF;
+  border: 1px solid $other__color__blue;
   border-radius: 4px;
   padding: 6px 18px;
   cursor: pointer;
