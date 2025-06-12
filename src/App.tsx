@@ -1,11 +1,11 @@
 import './App.css'
-import {RenderMainPage} from "./components/MAIN__PAGE/main__page.tsx";
+import {RenderResults} from "./components/results/results.tsx";
 
 function App() {
 
     return (
         <>
-            <RenderMainPage />
+            <RenderResults />
         </>
     )
 }
