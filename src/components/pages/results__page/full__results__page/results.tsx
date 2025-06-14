@@ -3,6 +3,7 @@ import {RenderHeader} from "../../../littleComponents/header/header.tsx";
 import {RenderFooter} from "../../../littleComponents/footer/footer.tsx";
 import tryToFind from '/tryToFind.png'
 import {RenderOnePublication} from "../one__publication/onePublication.tsx";
+import {RenderSummarySlider} from "../summary__slider/summarySlider.tsx";
 
 const RenderResults = () => {
     return (
@@ -19,7 +20,7 @@ const RenderResults = () => {
                 <div className={style.summary}>
                     <span className={style.big__text}>Общая сводка</span>
                     <span>Найдено вариантов</span>
-                    <div className={style.carousel}>Тут какая-то хрень с периодами и чета там</div>
+                    <RenderSummarySlider />
                 </div>
                 <span className={style.big__text}>СПИСОК ДОКУМЕНТОВ</span>
                 <div className={style.list__of__documents}>

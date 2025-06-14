@@ -2,32 +2,104 @@ import style from './search.module.css'
 import {RenderHeader} from "../../../littleComponents/header/header.tsx";
 import {RenderFooter} from "../../../littleComponents/footer/footer.tsx";
 import forSearch from '/forSearch.png'
-import {useEffect} from "react";
-import {useSelector} from "react-redux";
+import {type ChangeEvent, type MouseEvent, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import type {RootState} from "@reduxjs/toolkit/query";
 import {useNavigate} from "react-router";
+import type {AppDispatch} from "../../../../store/store.ts";
+import {docslimitReducer, innReducer, tonalityReducer} from "../../../../store/Slices/histogramReducer.ts";
+import * as React from "react";
 
 const RenderSearch = () => {
-    const isLoggedIn = useSelector((state: RootState) => !!state.auth.accessToken);
+    /*ошибковые переменные*/
+    const [innError, setInnError] = useState('');
+    const [limitError, setLimitError] = useState('');
+    const [dateError, setDateError] = useState('');
+    const [isSearchDisabled, setSearchDisabled] = useState(false);
+
+    /*всякие нужные переменные*/
     const navigate = useNavigate()
+    const checkboxes = [
+        'Признак максимальной полноты',
+        'Упоминания в бизнес-контексте',
+        'Главная роль в публикации',
+        'Публикации только с риск-факторами',
+        'Включать технические новости рынков',
+        'Включать анонсы и календари',
+        'Включать сводки новостей']
+    const isLoggedIn = useSelector((state: RootState) => !!state.auth.accessToken);
+    const dispatch: AppDispatch = useDispatch();
+    const endDate = useSelector((state: RootState) => state.histograms.histogramsParams.endDate);
+    const startDate = useSelector((state: RootState) => state.histograms.histogramsParams.startDate);
+    const SearchParams = useSelector((state: RootState) => state.histograms.histogramsParams);
+
     useEffect(() => {
         if (!isLoggedIn) {
             navigate('/');
         }
     }, [isLoggedIn, navigate])
 
-    const checkINN = () => {
+    /*проверяем инн на вменяемость*/
+    /*не знала, что инн формируется так*/
+    const checkINN = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(innReducer(e.target.value));
+        let result = false;
+        const INN = e.target.value;
+        const numbersForCheckINN = [2, 4, 10, 3, 5, 9, 4, 6, 8]
+
+        if (!INN) {
+            setInnError('Обязательное поле')
+        } else if (/[^0-9]/.test(INN)) {
+            setInnError('ИНН не должен содержать букв')
+        } else if (INN.length != 10) {
+            setInnError('ИНН состоит из 10 цифр')
+        } else {
+            setInnError('')
+        }
+
+        let sumForCheck = 0;
+        for (const i in numbersForCheckINN) {
+            sumForCheck += Number(INN[i]) * numbersForCheckINN[i]
+        }
+        if (sumForCheck % 11 % 10 == Number(INN[9])) {
+            result = true
+        } else {
+            setInnError('Неправильный ИНН: неверное контрольное число')
+        }
+
+        return result;
+    }
+
+    /*проверяем тональность, что бы это ни было*/
+    const handleSelect = (e: React.MouseEvent<HTMLSelectElement, MouseEvent>) => {
+        const selectElement = e.target as HTMLSelectElement;
+        dispatch(tonalityReducer(selectElement.value));
+    }
+
+    /*проверяем количество запросов*/
+    const checkLimit = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(docslimitReducer(e.target.value));
+        if (!e.target.value)
+            setLimitError('Обязательное поле')
+        else if (/[^0-9]/.test(e.target.value))
+            setLimitError('Введите корректное число')
+        else if (Number(e.target.value) < 1 || Number(e.target.value) > 1000)
+            setLimitError('Количество документов может быть от 1 до 1000')
+        else
+            setLimitError('')
+    }
+
+    /*проверяем какие чекбоксы протыкали*/
+    const checkCheckbox = () => {
 
     }
 
-    const checkLimit = () => {
 
-    }
-
+    /*вываливаемся на страницу результатов*/
     const takeResults = () => {
 
+        navigate('/results')
     }
-
 
     return (
         <>
@@ -41,52 +113,43 @@ const RenderSearch = () => {
                             <label>ИНН компании *</label>
                             <input
                                 className={style.text__inside}
+                                placeholder="10 цифр"
+                                maxLength={10}
                                 onChange={checkINN}
                             />
 
-                            <label>Тональность</label>
-                            <input className={style.text__inside}></input>
+                            <label className={style.tonality}>Тональность</label>
+                                <select name='tonality' onClick={(e) => handleSelect(e)}>
+                                    <option value="any">Любая</option>
+                                    <option value="positive">Позитивная</option>
+                                    <option value="negative">Негативная</option>
+                                </select>
                             <label>Количество документов в выдаче *</label>
                             <input
                                 className={style.text__inside}
+                                placeholder="от 1 до 1000"
                                 onChange={checkLimit}
                             />
                             <label>Диапазон поиска *</label>
                             <div className={style.range}>
-                                <input></input>
-                                <input></input>
+                                <input type="date"></input>
+                                <input type="date"></input>
                             </div>
                         </div>
                         <div className={style.additional__properties}>
                             <div className={style.checkbox__block}>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Признак максимальной полноты</span>
-                                </label>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Упоминания в бизнес-контексте</span>
-                                </label>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Главная роль в публикации</span>
-                                </label>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Публикации только с риск-факторами</span>
-                                </label>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Включать технические новости рынков</span>
-                                </label>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Включать анонсы и календари</span>
-                                </label>
-                                <label>
-                                    <input type={'checkbox'}></input>
-                                    <span>Включать сводки новостей</span>
-                                </label>
+                                {
+                                    checkboxes.map((label, index) => (
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                onChange={checkCheckbox}
+                                                data-index={index.toString()}
+                                            />
+                                            {label}
+                                        </label>
+                                    ))
+                                }
                             </div>
                             <div className={style.check__search}>
                                 <button>Поиск</button>

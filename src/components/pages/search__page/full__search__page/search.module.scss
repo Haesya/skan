@@ -1,4 +1,4 @@
-@import '../../../../_general__properties.css';
+@import '../../../../_general__properties.scss';
 
 .search__page {
   grid-area: main;
@@ -36,10 +36,22 @@
 }
 
 .text__inside {
-  height: 43px;
+  height: 45px;
   width: 240px;
   border-radius: 5px;
   border: 1px solid #c7c7c7;
+}
+
+.tonality {
+  display: flex;
+  flex-direction: column;
+}
+
+select {
+  height: 50px;
+  width: 250px;
+  padding: 3px 0 3px 10px;
+  border-radius: 5px;
 }
 
 .additional__properties {
@@ -65,6 +77,10 @@
   width: 100%;
   border-radius: 5px;
   border: 1px solid #c7c7c7;
+}
+
+input {
+  padding: 3px 0 3px 10px;
 }
 
 .check__search{
