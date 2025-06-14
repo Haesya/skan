@@ -1,0 +1,84 @@
+@import '../../../general__properties';
+
+header {
+  display: grid;
+  grid-area: header;
+  grid-template-columns: minmax(16px, auto) minmax(288px, 1235px) minmax(16px, auto);
+  grid-template-areas:
+            ". hc .";
+}
+
+.header__content {
+  grid-area: hc;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.header__content > div {
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.logo > img {
+  height: 45px;
+}
+
+.sections > ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.sections > ul > li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.companies {
+  display: none;
+}
+
+.limit {
+  color: #8ac540;
+  font-size: 14px;
+}
+
+.burger__menu > img {
+  width: 40px;
+  height: 40px;
+}
+
+.authorization{
+  gap: 18px;
+}
+
+.register {
+  cursor: pointer;
+}
+
+.stick{
+  width: 2px;
+  height: 26px;
+  background-color: $main__color__green;
+}
+
+.login{
+  border: none;
+  border-radius: 5px;
+  color: $main__color__black;
+  background-color: $main__color__green;
+  padding: 5px 10px;
+  height: fit-content;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+}
+
+.avatar > img {
+  width: 40px;
+  height: 40px;
+}

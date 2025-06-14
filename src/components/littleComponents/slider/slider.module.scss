@@ -1,0 +1,39 @@
+@import '../../../_general__properties.css';
+
+.block__for__slider {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto 1fr auto;
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+  height: 200px;
+}
+
+.slider__block {
+  display: inline-block;
+  width: 100%;
+  text-wrap: wrap;
+  border-radius: 10px;
+  box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.2);
+  padding: 30px 30px;
+}
+
+.slider__block > div > img {
+  width: 64px;
+  height: 64px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button > img {
+  width: 40px;
+  height: 40px;
+}
