@@ -7,8 +7,16 @@ import {useDispatch, useSelector} from "react-redux";
 import type {RootState} from "@reduxjs/toolkit/query";
 import {useNavigate} from "react-router";
 import type {AppDispatch} from "../../../../store/store.ts";
-import {docslimitReducer, innReducer, tonalityReducer} from "../../../../store/Slices/histogramReducer.ts";
+import {
+    docslimitReducer, endDateReducer,
+    innReducer, resetFormReducer,
+    setCheckbox,
+    startDateReducer,
+    tonalityReducer
+} from "../../../../store/Slices/histogramReducer.ts";
 import * as React from "react";
+import {PostObjectSearch} from "../../../../store/objectsearch.tsx";
+import {PostHistograms} from "../../../../store/histogram.tsx";
 
 const RenderSearch = () => {
     /*ошибковые переменные*/
@@ -71,7 +79,7 @@ const RenderSearch = () => {
     }
 
     /*проверяем тональность, что бы это ни было*/
-    const handleSelect = (e: React.MouseEvent<HTMLSelectElement, MouseEvent>) => {
+    const handleSelect = (e: React.MouseEvent<HTMLSelectElement>) => {
         const selectElement = e.target as HTMLSelectElement;
         dispatch(tonalityReducer(selectElement.value));
     }
@@ -90,15 +98,59 @@ const RenderSearch = () => {
     }
 
     /*проверяем какие чекбоксы протыкали*/
-    const checkCheckbox = () => {
-
+    const checkCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+        const index = parseInt(e.target.dataset.index || '0', 10);
+        const checked = e.target.checked;
+        dispatch(setCheckbox({index, checked}));
     }
 
+    const checkDatas = (e: ChangeEvent<HTMLInputElement>, field: 'startDate' | 'endDate') => {
+        const value = e.target.value;
+        const isStartDate = field === 'startDate';
+        let setStartDate, setEndDate;
+        const newDate = new Date()
+
+        if (isStartDate)
+            setStartDate = new Date(value + 'T00:00:00')
+        else
+            setStartDate = new Date(startDate + 'T00:00:00')
+        if (!isStartDate)
+            setEndDate = new Date(value + 'T00:00:00')
+        else
+            setEndDate = new Date(endDate + 'T00:00:00')
+
+        if (isStartDate)
+            dispatch(startDateReducer(value))
+        else
+            dispatch(endDateReducer(value))
+
+        if(newDate >= setStartDate && setEndDate >= setStartDate)
+            setDateError('')
+        else
+            setDateError('Диапазон дат указан неверно')
+    }
+
+    const takeStartDate = (e: ChangeEvent<HTMLInputElement>) => {
+        checkDatas(e, "startDate")
+    }
+
+    const takeEndDate = (e: ChangeEvent<HTMLInputElement>) => {
+        checkDatas(e, "endDate")
+    }
 
     /*вываливаемся на страницу результатов*/
-    const takeResults = () => {
+    const takeResults = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const validINN = checkINN({target: {value: SearchParams.innField} as HTMLInputElement} as ChangeEvent<HTMLInputElement>)
+        const validLimit = !limitError
+        const validDates = !dateError
 
-        navigate('/results')
+        if (validINN && validLimit && validDates) {
+            dispatch(PostObjectSearch(SearchParams))
+            dispatch(PostHistograms(SearchParams));
+            dispatch(resetFormReducer());
+            navigate('/results')
+        }
     }
 
     return (
@@ -119,11 +171,11 @@ const RenderSearch = () => {
                             />
 
                             <label className={style.tonality}>Тональность</label>
-                                <select name='tonality' onClick={(e) => handleSelect(e)}>
-                                    <option value="any">Любая</option>
-                                    <option value="positive">Позитивная</option>
-                                    <option value="negative">Негативная</option>
-                                </select>
+                            <select name='tonality' onClick={(e) => handleSelect(e)}>
+                                <option value="any">Любая</option>
+                                <option value="positive">Позитивная</option>
+                                <option value="negative">Негативная</option>
+                            </select>
                             <label>Количество документов в выдаче *</label>
                             <input
                                 className={style.text__inside}
@@ -132,8 +184,8 @@ const RenderSearch = () => {
                             />
                             <label>Диапазон поиска *</label>
                             <div className={style.range}>
-                                <input type="date"></input>
-                                <input type="date"></input>
+                                <input type="date" onChange={(e) => takeStartDate(e)}></input>
+                                <input type="date" onChange={(e) => takeEndDate(e)}></input>
                             </div>
                         </div>
                         <div className={style.additional__properties}>
