@@ -68,11 +68,11 @@ const RenderResults = () => {
                             documents={documents}
                             shownDocs={shownDocs}
                         />
+                        <button
+                            className={style.load__more}
+                            onClick={LoadMore}
+                        >Показать больше</button>
                     </div>
-                    <button
-                        className={style.load__more}
-                        onClick={LoadMore}
-                    >Показать больше</button>
                 </div>
             </div>
             <RenderFooter/>

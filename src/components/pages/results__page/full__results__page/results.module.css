@@ -67,6 +67,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 38px; }
 
 .load__more {
@@ -78,4 +79,4 @@
   border-radius: 5px;
   cursor: pointer; }
 
-/*# sourceMappingURL=results__page.module.css.map */
+/*# sourceMappingURL=results.module.css.map */

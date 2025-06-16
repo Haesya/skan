@@ -32,6 +32,33 @@ interface DocsProps {
 const RenderOnePublication = ({documents, shownDocs}: DocsProps) => {
     const shownDocsCard = documents.slice(0, shownDocs)
 
+    const checkCategory = (doc) => {
+        let category = ""
+        if (doc.ok.attributes.isTechNews)
+            category = "Технические новости"
+        else if (doc.ok.attributes.isDigest)
+            category = "Сводки новостей"
+        else if (doc.ok.attributes.isAnnouncement)
+            category = "Анонсы и события"
+        else
+            category = "Без категории"
+        return category
+    }
+
+    const parseArticle = (doc) => {
+        const xml = doc.ok.content.markup
+        const div = document.createElement("div")
+        div.innerHTML = xml
+        let cleanArticle = div.textContent || div.innerText || "";
+        cleanArticle = cleanArticle.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "")
+
+        if(cleanArticle.length > 300) {
+            cleanArticle = cleanArticle.slice(0, 300)
+        }
+
+        return cleanArticle
+    }
+
     return (
         <>
             {shownDocsCard.map((doc) => (
@@ -40,10 +67,10 @@ const RenderOnePublication = ({documents, shownDocs}: DocsProps) => {
                         <span>{new Date (doc.ok.issueDate).toLocaleDateString()}</span>
                         <a target="_blank" href={doc.ok.url}>{doc.ok.source.name.replace(/\s*\([^)]*\)/, '')}</a>
                     </div>
-                    <span className={style.article__name}>Название статьи</span>
-                    <div className={style.article__category}>Технические новости</div>
-                    <div className={style.article__picture}>Картинка статьи</div>
-                    <span>Кусок статьи</span>
+                    <span className={style.article__name}>{doc.ok.title.text}</span>
+                    <div className={style.article__category}>{checkCategory(doc)}</div>
+                    <div className={style.article__picture}>Чет какие-то проблемы с картинкой</div>
+                    <span>{parseArticle(doc)}</span>
                     <div className={style.footer__publication}>
                         <button>Читать в источнике</button>
                         <span>Сколько слов в статье</span>

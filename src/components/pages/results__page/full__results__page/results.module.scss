@@ -1,4 +1,4 @@
-@import '../../../../_general__properties.css';
+@import '../../../../_general__properties.scss';
 
 .results__page {
   grid-area: main;
@@ -44,6 +44,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 38px;
 }
 
