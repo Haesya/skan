@@ -64,8 +64,10 @@ const RenderResults = () => {
                 <span className={style.big__text}>СПИСОК ДОКУМЕНТОВ</span>
                 <div className={style.list__of__documents}>
                     <div className={style.articles}>
-                        <RenderOnePublication />
-                        <RenderOnePublication />
+                        <RenderOnePublication
+                            documents={documents}
+                            shownDocs={shownDocs}
+                        />
                     </div>
                     <button
                         className={style.load__more}
