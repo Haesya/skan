@@ -29,6 +29,7 @@
 .slider__block {
   display: flex;
   flex-direction: column;
+  width: 100px;
   align-items: center;
   gap: 15px;
   padding: 17px 0;
@@ -37,6 +38,6 @@
 .slider__stick {
   height: 80%;
   width: 2px;
-  background-color: $other__color__green;
+  background-color: #949494;
   margin: auto 0 auto 0;
 }

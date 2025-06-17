@@ -18,8 +18,6 @@ const RenderResults = () => {
     const sliderData = useSelector((state: RootState) => state.histograms.data);
     const documents = useSelector((state: RootState) => state.docs.data);
     const shownDocs = useSelector((state: RootState) => state.docs.shownDocs);
-    const status = useSelector((state: RootState) => state.docs.status);
-    const error = useSelector((state: RootState) => state.docs.error);
     const encodedIds = useSelector((state: RootState) => state.objectsearch.dataObjectsearch);
     const isLoggedIn = useSelector((state: RootState) => !!state.auth.accessToken);
 
@@ -68,11 +66,11 @@ const RenderResults = () => {
                             documents={documents}
                             shownDocs={shownDocs}
                         />
-                        <button
-                            className={style.load__more}
-                            onClick={LoadMore}
-                        >Показать больше</button>
                     </div>
+                    {!allDocsDisplayed && <button
+                        className={style.load__more}
+                        onClick={LoadMore}
+                    >Показать больше</button>}
                 </div>
             </div>
             <RenderFooter/>

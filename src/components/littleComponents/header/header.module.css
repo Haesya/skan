@@ -59,7 +59,7 @@ header {
   cursor: pointer; }
 
 .companies {
-  display: none; }
+  font-size: 10px; }
 
 .limit {
   color: #8ac540;

@@ -70,7 +70,7 @@ const RenderOnePublication = ({documents, shownDocs}: DocsProps) => {
                     <span className={style.article__name}>{doc.ok.title.text}</span>
                     <div className={style.article__category}>{checkCategory(doc)}</div>
                     <div className={style.article__picture}>Чет какие-то проблемы с картинкой</div>
-                    <span>{parseArticle(doc)}</span>
+                    <span className={style.article__parseText}>{parseArticle(doc)}</span>
                     <div className={style.footer__publication}>
                         <button>Читать в источнике</button>
                         <span>Сколько слов в статье</span>

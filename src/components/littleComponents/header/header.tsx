@@ -9,12 +9,13 @@ import {logout} from "../../../store/Slices/authReducer.ts";
 import {getAccountInfo} from "../../../store/auth.tsx";
 import {useEffect} from 'react';
 import {useNavigate} from "react-router";
+import {RenderLoader} from "../loader/loader.tsx";
 
 
 const RenderHeader = () => {
     const dispatch = useDispatch<AppDispatch>();
     const authState = useSelector((state: RootState) => state.auth);
-    const isLoggedIn = !!authState.accessToken; // Проверка, авторизован ли пользователь
+    const isLoggedIn = !!authState.accessToken;
     const navigate = useNavigate()
     const accountInfo = authState.accountInfo;
     const loadingAccountInfo = authState.loadingAccountInfo;
@@ -37,29 +38,37 @@ const RenderHeader = () => {
                 <div className={style.logo}><img src={skan} alt={'logoskan'}/></div>
                 <div className={style.sections}>
                     <ul>
-                        <li>Главная</li>
-                        <li>Тарифы</li>
-                        <li>FAQ</li>
+                        <li><Link to={'/'}>Главная</Link></li>
+                        <li><Link to={'/'}>Тарифы</Link></li>
+                        <li><Link to={'/'}>FAQ</Link></li>
                     </ul>
                 </div>
-                <div className={style.companies}>
-                    <div>
-                        <span>Использовано компаний:</span>
-                        <span className={style.using}>34</span>
-                    </div>
-                    <div>
-                        <span>Лимит по компаниям:</span>
-                        <span className={style.limit}>100</span>
-                    </div>
-                </div>
                 {isLoggedIn ? (
-                        <div className={style.user}>
-                            <div>
-                                <div>Муханова А.</div>
-                                <button onClick={handleLogout}>Выйти</button>
+                        <>
+                            {loadingAccountInfo ? (
+                                <RenderLoader />
+                                )
+                                    : (
+                                <div className={style.companies}>
+                                    <div>
+                                        <span>Использовано компаний:</span>
+                                        <span className={style.using}>34</span>
+                                    </div>
+                                    <div>
+                                        <span>Лимит по компаниям:</span>
+                                        <span className={style.limit}>100</span>
+                                    </div>
+                                </div>
+                                )
+                            }
+                            <div className={style.user}>
+                                <div>
+                                    <div>Муханова А.</div>
+                                    <button onClick={handleLogout}>Выйти</button>
+                                </div>
+                                <div className={style.avatar}><img src={avatar} alt={'avatar'}/></div>
                             </div>
-                            <div className={style.avatar}><img src={avatar} alt={'avatar'}/></div>
-                        </div>
+                        </>
                     )
                     : (
                         <div className={style.authorization}>

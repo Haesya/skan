@@ -34,18 +34,16 @@
 }
 
 .list__of__documents {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 40px;
 }
 
 .articles {
   display: grid;
-  width: 100%;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 38px;
+  gap: 25px;
 }
 
 .load__more {
