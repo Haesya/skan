@@ -1,22 +1,22 @@
 import style from './search.module.css'
-import {RenderHeader} from "../../../littleComponents/header/header.tsx";
-import {RenderFooter} from "../../../littleComponents/footer/footer.tsx";
+import {RenderHeader} from "../../littleComponents/header/header.tsx";
+import {RenderFooter} from "../../littleComponents/footer/footer.tsx";
 import forSearch from '/forSearch.png'
 import {type ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import type {RootState} from "@reduxjs/toolkit/query";
 import {useNavigate} from "react-router";
-import type {AppDispatch} from "../../../../store/store.ts";
+import type {AppDispatch} from "../../../store/store.ts";
 import {
     docslimitReducer, endDateReducer,
     innReducer, resetFormReducer,
     setCheckbox,
     startDateReducer,
     tonalityReducer
-} from "../../../../store/Slices/histogramReducer.ts";
+} from "../../../store/Slices/histogramReducer.ts";
 import * as React from "react";
-import {PostObjectSearch} from '../../../../store/fetches/objectsearch.tsx'
-import {PostHistograms} from '../../../../store/fetches/histogram.tsx'
+import {PostObjectSearch} from '../../../store/fetches/objectsearch.tsx'
+import {PostHistograms} from '../../../store/fetches/histogram.tsx'
 
 const RenderSearch = () => {
     /*ошибковые переменные*/

@@ -83,14 +83,6 @@ const RenderHeader = () => {
                     onClick={()=> setVisible(!visible)}
                 >
                     <img src={burgerMenu} alt={'burgerMenu'}/>
-                    <div className={visible ? style.open__burger__menu : style.no__burger__menu}>
-                        <ul>
-                            <li><Link to={'/'}>Главная</Link></li>
-                            <li><Link to={'/'}>Тарифы</Link></li>
-                            <li><Link to={'/'}>FAQ</Link></li>
-                        </ul>
-                    </div>
-
                 </button>
             </div>
         </header>
