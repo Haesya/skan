@@ -1,4 +1,10 @@
 @media screen and (min-width: 1px) {
+  .header__info {
+    display: none; }
+
+  .burger__menu {
+    display: flex; }
+
   .authorization__main {
     display: flex;
     flex-direction: column;
@@ -6,12 +12,6 @@
     align-items: center; }
 
   .picture > img {
-    display: none; }
-
-  .sections {
-    display: none; }
-
-  .authorization {
     display: none; }
 
   .tariffs {
@@ -22,17 +22,14 @@
   .one__card {
     width: 450px; } }
 @media screen and (min-width: 768px) {
-  .sections {
-    display: flex; }
-
-  .authorization {
-    display: flex; }
-
-  .picture > img {
+  .header__info {
     display: flex; }
 
   .burger__menu {
     display: none; }
+
+  .picture > img {
+    display: flex; }
 
   .authorization__main {
     display: grid; } }

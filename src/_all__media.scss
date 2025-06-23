@@ -1,4 +1,12 @@
 @media screen and (min-width: 1px) {
+  .header__info {
+    display: none;
+  }
+
+  .burger__menu {
+    display: flex;
+  }
+
   .authorization__main {
     display: flex;
     flex-direction: column;
@@ -8,14 +16,6 @@
 
   .picture > img {
     display: none
-  }
-
-  .sections {
-    display: none;
-  }
-
-  .authorization {
-    display: none;
   }
 
   .tariffs {
@@ -34,15 +34,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .sections{
-    display: flex;
-  }
-
-  .authorization{
-    display: flex;
-  }
-
-  .picture > img {
+  .header__info {
     display: flex;
   }
 
@@ -50,11 +42,13 @@
     display: none;
   }
 
-  .authorization__main{
-    display: grid;
+  .picture > img {
+    display: flex;
   }
 
-  .login{
+
+  .authorization__main{
+    display: grid;
   }
 }
 

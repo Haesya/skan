@@ -15,8 +15,6 @@ const RenderOneCard = ({nameTariff, colorClass, forWhat, price, oldPrice, instal
         [style.business]: (colorClass === 'Business')
     })
 
-    console.log(isCurrent)
-
     return (
         <div className={style.one__card}>
             <div className={cardStyle}>

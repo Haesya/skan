@@ -3,7 +3,7 @@
 header {
   display: grid;
   grid-area: header;
-  grid-template-columns: minmax(16px, auto) minmax(288px, 1235px) minmax(16px, auto);
+  grid-template-columns: minmax(0, auto) minmax(288px, 1235px) minmax(0, auto);
   grid-template-areas:
             ". hc .";
 }
@@ -12,95 +12,32 @@ header {
   grid-area: hc;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-}
 
-.header__content > div {
-  flex-wrap: wrap;
-  align-content: center;
+  &.active {
+    width: 100%;
+    background-color: $main__color__green;
+    color: $main__color__white;
+  }
 }
 
 .logo > img {
-  height: 45px;
+  width: 140px;
+}
+
+.header__info {
+  gap: 20px;
+
+  &.active {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .sections > ul {
   display: flex;
-  justify-content: space-between;
-  gap: 40px;
-}
+  gap: 20px;
 
-.sections > ul > li {
-  list-style: none;
-  cursor: pointer;
-}
-
-.companies {
-  font-size: 10px;
-}
-
-.limit {
-  color: #8ac540;
-  font-size: 14px;
-}
-
-.user {
-  display: flex;
-}
-
-.avatar > img {
-  width: 40px;
-  height: 40px;
-}
-
-.authorization{
-  gap: 18px;
-}
-
-.register {
-  cursor: pointer;
-}
-
-.stick{
-  width: 2px;
-  height: 26px;
-  background-color: $main__color__green;
-}
-
-.login{
-  border: none;
-  border-radius: 5px;
-  color: $main__color__black;
-  background-color: $main__color__green;
-  padding: 5px 10px;
-  height: fit-content;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.open__burger__menu {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 5px;
-  position: fixed;
-  color: black;
-  background-color: $main__color__green;
-  border-radius: 5px;
-  font-size: 14px;
-  text-align: left; }
-
-.open__burger__menu > div {
-  cursor: pointer; }
-
-.open__burger__menu > div:hover {
-  background-color: #ebecf0; }
-
-.no__burger__menu {
-  display: none; }
-
-
-.burger__menu > img {
-  width: 40px;
-  height: 40px;
+  &.active {
+    flex-direction: column;
+  }
 }
