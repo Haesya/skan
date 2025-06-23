@@ -1,7 +1,8 @@
 import style from './header.module.css'
 import skan from '/public/skan.png'
+import skanwhite from "/public/skanwhite.png";
 import burger from '/public/burger.svg'
-import burgerwhite from '/public/burgerwhite.svg'
+import cross from '/public/Cross.svg'
 import avatar from '/public/avatar.svg'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,7 +12,6 @@ import {getAccountInfo} from '../../../store/fetches/login.tsx'
 import {useEffect, useState} from 'react';
 import {useNavigate} from "react-router";
 import {RenderLoader} from "../loader/loader.tsx";
-import skanwhite from "/public/skanwhite.png";
 
 
 const RenderHeader = () => {
@@ -42,12 +42,26 @@ const RenderHeader = () => {
     return (
         <header>
             <div className={`${style.header__content} ${burgerMenu ? style.active : ''}`}>
-                <div className={style.logo}>
-                    {burgerMenu ? (
-                        <img src={skanwhite} alt={'skanwhite'}/>
-                    ) : (
-                        <img src={skan} alt={'skan'}/>
-                    )}
+                <div className={style.header__mobile}>
+                    <div className={style.logo}>
+                        {burgerMenu ? (
+                            <img src={skanwhite} alt={'skanwhite'}/>
+                        ) : (
+                            <img src={skan} alt={'skan'}/>
+                        )}
+                    </div>
+                    <button
+                        className={style.burger__menu}
+                        onClick={toggleBurgerMenu}
+                    >
+                        {burgerMenu ?
+                            (
+                                <img src={cross} alt={'cross'}/>
+                            ) : (
+                                <img src={burger} alt={'burgerMenu'}/>
+                            )
+                        }
+                    </button>
                 </div>
                 <div className={`${style.header__info} ${burgerMenu ? style.active : ''}`}>
                     <div className={style.sections}>
@@ -60,17 +74,19 @@ const RenderHeader = () => {
                     {isLoggedIn ? (
                             <>
                                 {loadingAccountInfo ? (
-                                        <RenderLoader />
+                                        <RenderLoader/>
                                     )
                                     : (
                                         <div className={style.companies}>
                                             <div>
-                                                <span>Использовано компаний:</span>
-                                                <span className={style.using}>{accountInfo?.eventFiltersInfo.usedCompanyCount || 0}</span>
+                                                <span>Использовано компаний: </span>
+                                                <span
+                                                    className={style.using}>{accountInfo?.eventFiltersInfo.usedCompanyCount || 0}</span>
                                             </div>
                                             <div>
-                                                <span>Лимит по компаниям:</span>
-                                                <span className={style.limit}>{accountInfo?.eventFiltersInfo.companyLimit || 0}</span>
+                                                <span>Лимит по компаниям: </span>
+                                                <span
+                                                    className={style.limit}>{accountInfo?.eventFiltersInfo.companyLimit || 0}</span>
                                             </div>
                                         </div>
                                     )
@@ -93,18 +109,7 @@ const RenderHeader = () => {
                         )
                     }
                 </div>
-                <button
-                    className={style.burger__menu}
-                    onClick={toggleBurgerMenu}
-                >
-                    {burgerMenu ?
-                        (
-                        <img src={burgerwhite} alt={'burgerwhite'}/>
-                        ) : (
-                            <img src={burger} alt={'burgerMenu'}/>
-                        )
-                    }
-                </button>
+
             </div>
         </header>
     )

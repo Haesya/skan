@@ -1,4 +1,10 @@
 @media screen and (min-width: 1px) {
+  .header__content {
+    justify-content: space-between; }
+
+  .header__mobile {
+    width: 100%; }
+
   .header__info {
     display: none; }
 
@@ -22,8 +28,19 @@
   .one__card {
     width: 450px; } }
 @media screen and (min-width: 768px) {
+  .header__mobile {
+    width: fit-content;
+    margin-right: 20px; }
+
+  .header__content {
+    justify-content: left;
+    width: 100%; }
+
   .header__info {
-    display: flex; }
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 200px; }
 
   .burger__menu {
     display: none; }

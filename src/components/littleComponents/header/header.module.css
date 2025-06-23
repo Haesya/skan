@@ -1,4 +1,10 @@
 @media screen and (min-width: 1px) {
+  .header__content {
+    justify-content: space-between; }
+
+  .header__mobile {
+    width: 100%; }
+
   .header__info {
     display: none; }
 
@@ -22,8 +28,19 @@
   .one__card {
     width: 450px; } }
 @media screen and (min-width: 768px) {
+  .header__mobile {
+    width: fit-content;
+    margin-right: 20px; }
+
+  .header__content {
+    justify-content: left;
+    width: 100%; }
+
   .header__info {
-    display: flex; }
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 200px; }
 
   .burger__menu {
     display: none; }
@@ -62,25 +79,68 @@ header {
 .header__content {
   grid-area: hc;
   display: flex;
-  justify-content: space-between; }
+  padding-top: 20px; }
   .header__content.active {
     width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #029491;
     color: #FFFFFF; }
+
+.header__mobile {
+  display: flex;
+  justify-content: space-between; }
 
 .logo > img {
   width: 140px; }
 
 .header__info {
-  gap: 20px; }
+  margin: auto; }
   .header__info.active {
     display: flex;
     flex-direction: column; }
+
+.companies {
+  color: rgba(0, 0, 0, 0.2); }
+
+.using {
+  color: black; }
+
+.limit {
+  color: #8AC540; }
 
 .sections > ul {
   display: flex;
   gap: 20px; }
   .sections > ul.active {
-    flex-direction: column; }
+    flex-direction: column;
+    color: #FFFFFF; }
+
+.user {
+  display: flex;
+  flex-direction: row; }
+
+.burger__menu > img {
+  width: 40px;
+  height: 40px; }
+
+.authorization {
+  display: flex;
+  gap: 10px; }
+
+.register {
+  color: rgba(0, 0, 0, 0.2); }
+
+.stick {
+  width: 1px;
+  background-color: #7CE3E1;
+  height: 26px;
+  margin: auto; }
+
+.login {
+  background-color: #7CE3E1;
+  border-radius: 4px;
+  border: none;
+  padding: 4px 12px; }
 
 /*# sourceMappingURL=header.module.css.map */
