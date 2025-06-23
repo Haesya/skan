@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { getAccountInfo, loginUser } from '../auth';
-import type {AuthState} from '../types';
+import { getAccountInfo, loginUser } from '../fetches/login.tsx'
+import type {AuthState} from '../types.ts';
 
 const initialState: AuthState = {
     accessToken: null,
@@ -34,7 +34,6 @@ const authReducer = createSlice({
                 state.error = null;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
-                // Обработка успешной аутентификации
                 state.status = 'idle';
                 state.accessToken = action.payload.accessToken;
                 state.expire = action.payload.expire;
@@ -46,6 +45,7 @@ const authReducer = createSlice({
                 state.isLogged = false;
                 state.error = action.payload;
             })
+
             .addCase(getAccountInfo.pending, (state) => {
                 state.loadingAccountInfo = true;
             })

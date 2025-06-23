@@ -8,7 +8,15 @@
     display: none; }
 
   .authorization {
-    display: none; } }
+    display: none; }
+
+  .tariffs {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+
+  .one__card {
+    width: 450px; } }
 @media screen and (min-width: 768px) {
   .sections {
     display: flex; }
@@ -20,6 +28,10 @@
     display: none; } }
 @media screen and (min-width: 1024px) {
   .authorization__main {
+    flex-direction: row; }
+
+  .tariffs {
+    display: flex;
     flex-direction: row; } }
 @font-face {
   font-family: "Inter-regular";
@@ -84,8 +96,6 @@
   font-size: 45px; }
 
 .tariffs {
-  display: flex;
-  gap: 40px;
-  justify-content: center; }
+  gap: 40px; }
 
 /*# sourceMappingURL=main__page.module.css.map */

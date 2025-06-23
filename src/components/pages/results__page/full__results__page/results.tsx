@@ -1,16 +1,18 @@
+import {useEffect} from "react";
+import {useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import type {RootState} from "@reduxjs/toolkit/query";
+
 import style from './results.module.css'
 import {RenderHeader} from "../../../littleComponents/header/header.tsx";
 import {RenderFooter} from "../../../littleComponents/footer/footer.tsx";
-import tryToFind from '/tryToFind.png'
 import {RenderOnePublication} from "../one__publication/onePublication.tsx";
 import {RenderSummarySlider} from "../summary__slider/summarySlider.tsx";
-import {useDispatch, useSelector} from "react-redux";
-import type {RootState} from "@reduxjs/toolkit/query";
-import type {AppDispatch} from "../../../../store/store.ts";
-import {useEffect} from "react";
-import {useNavigate} from "react-router";
-import {setInitialShownDocs, showDocs} from "../../../../store/Slices/documentsReducer.ts";
-import {PostDocuments} from "../../../../store/documents.tsx";
+import type {AppDispatch} from '../../../../store/store.ts'
+import {PostDocuments} from '../../../../store/fetches/document.tsx'
+
+import {setInitialShownDocs, showDocs} from "../../../../store/Slices/documentsReducer";
+import tryToFind from '/tryToFind.png'
 
 const RenderResults = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -19,8 +21,8 @@ const RenderResults = () => {
     const documents = useSelector((state: RootState) => state.docs.data);
     const shownDocs = useSelector((state: RootState) => state.docs.shownDocs);
     const encodedIds = useSelector((state: RootState) => state.objectsearch.dataObjectsearch);
-    const isLoggedIn = useSelector((state: RootState) => !!state.auth.accessToken);
 
+    const isLoggedIn = useSelector((state: RootState) => !!state.auth.accessToken);
     useEffect(() => {
         if(!isLoggedIn) {
             navigate('/')
@@ -28,7 +30,7 @@ const RenderResults = () => {
     }, [isLoggedIn, navigate]);
 
     useEffect(() => {
-        dispatch(setInitialShownDocs(10)); // Установить показанные документы обратно на 10 при загрузке страницы
+        dispatch(setInitialShownDocs(10));
     }, [dispatch]);
 
     const allDocsDisplayed = shownDocs >= documents.length;

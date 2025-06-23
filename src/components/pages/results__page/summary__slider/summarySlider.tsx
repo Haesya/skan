@@ -20,6 +20,7 @@ const RenderSummarySlider = ({sliderData}: SliderProps) => {
     const [firstIndex, setFirstIndex] = useState(0)
     const totalDocumentsData = sliderData.data.find(item => item.histogramType === 'totalDocuments')?.data || [];
 
+
     const riskFactorsData = sliderData.data.find(
         item => item.histogramType === 'riskFactors')?.data || [];
 

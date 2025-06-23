@@ -82,3 +82,24 @@ header {
   width: 40px;
   height: 40px;
 }
+
+.open__burger__menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  position: fixed;
+  color: black;
+  background-color: $main__color__green;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: left; }
+
+.open__burger__menu > div {
+  cursor: pointer; }
+
+.open__burger__menu > div:hover {
+  background-color: #ebecf0; }
+
+.no__burger__menu {
+  display: none; }

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PostDocuments } from '../fetches/document.tsx'
 import type {DocumentsState} from '../types';
 
 const initialState: DocumentsState = {
@@ -14,11 +15,27 @@ const documentsReducer = createSlice({
     reducers: {
         showDocs: (state, action) => {
             state.shownDocs += action.payload;
-
         },
         setInitialShownDocs: (state, action) => {
             state.shownDocs = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(PostDocuments.pending, (state) => {
+                state.status = 'loading';
+                state.error = null;
+            })
+            .addCase(PostDocuments.fulfilled, (state, { payload }) => {
+                state.data = [...payload] // Сохраняем полученные документы
+                state.status = 'succeeded';
+            })
+            .addCase(PostDocuments.rejected, (state, { payload }) => {
+                state.status = 'failed';
+                if (payload) {
+                    state.error = payload.message;
+                }
+            });
     }
 });
 

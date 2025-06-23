@@ -1,13 +1,13 @@
 import style from './header.module.css'
-import skan from '../../../../public/skan.png'
-import burgerMenu from '../../../../public/burger.svg'
-import avatar from '../../../../public/avatar.svg'
+import skan from '/public/skan.png'
+import burgerMenu from '/public/burger.svg'
+import avatar from '/public/avatar.svg'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import type {AppDispatch, RootState} from "../../../store/store.ts";
 import {logout} from "../../../store/Slices/authReducer.ts";
-import {getAccountInfo} from "../../../store/auth.tsx";
-import {useEffect} from 'react';
+import {getAccountInfo} from '../../../store/fetches/login.tsx'
+import {useEffect, useState} from 'react';
 import {useNavigate} from "react-router";
 import {RenderLoader} from "../loader/loader.tsx";
 
@@ -19,6 +19,7 @@ const RenderHeader = () => {
     const navigate = useNavigate()
     const accountInfo = authState.accountInfo;
     const loadingAccountInfo = authState.loadingAccountInfo;
+    const [visible, setVisible] = useState(false)
 
     useEffect(() => {
         if (isLoggedIn && authState.accessToken) dispatch(getAccountInfo(authState.accessToken))
@@ -30,7 +31,6 @@ const RenderHeader = () => {
         localStorage.removeItem('expire')
         navigate('/')
     }
-
 
     return (
         <header>
@@ -52,11 +52,11 @@ const RenderHeader = () => {
                                 <div className={style.companies}>
                                     <div>
                                         <span>Использовано компаний:</span>
-                                        <span className={style.using}>34</span>
+                                        <span className={style.using}>{accountInfo?.eventFiltersInfo.usedCompanyCount || 0}</span>
                                     </div>
                                     <div>
                                         <span>Лимит по компаниям:</span>
-                                        <span className={style.limit}>100</span>
+                                        <span className={style.limit}>{accountInfo?.eventFiltersInfo.companyLimit || 0}</span>
                                     </div>
                                 </div>
                                 )
@@ -78,9 +78,20 @@ const RenderHeader = () => {
                         </div>
                     )
                 }
-                <div className={style.burger__menu}>
+                <button
+                    className={style.burger__menu}
+                    onClick={()=> setVisible(!visible)}
+                >
                     <img src={burgerMenu} alt={'burgerMenu'}/>
-                </div>
+                    <div className={visible ? style.open__burger__menu : style.no__burger__menu}>
+                        <ul>
+                            <li><Link to={'/'}>Главная</Link></li>
+                            <li><Link to={'/'}>Тарифы</Link></li>
+                            <li><Link to={'/'}>FAQ</Link></li>
+                        </ul>
+                    </div>
+
+                </button>
             </div>
         </header>
     )

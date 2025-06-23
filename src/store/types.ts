@@ -19,23 +19,23 @@ export interface EventFiltersInfo {
     usedCompanyCount: number;
     companyLimit: number;
 }
-  
+
 export interface AccountInfo {
     eventFiltersInfo: EventFiltersInfo;
 }
-  
+
 export interface Tariff {
     id: number;
     name: string;
 }
-  
+
 export interface AuthState {
     accessToken: string | null;
     expire: string | null;
     status: 'idle' | 'loading' | 'failed';
     isLogged: boolean;
     error: { field: string, message: string } | null;
-    accountInfo: AccountInfo | null; 
+    accountInfo: AccountInfo | null;
     loadingAccountInfo: boolean;
     currentTariff: Tariff | null;
 }

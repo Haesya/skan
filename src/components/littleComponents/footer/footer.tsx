@@ -1,5 +1,5 @@
 import style from './footer.module.css'
-import skanwhite from '../../../../public/skanwhite.png'
+import skanwhite from '/public/skanwhite.png'
 
 const RenderFooter = () => {
 

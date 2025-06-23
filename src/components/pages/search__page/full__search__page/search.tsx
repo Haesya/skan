@@ -2,7 +2,7 @@ import style from './search.module.css'
 import {RenderHeader} from "../../../littleComponents/header/header.tsx";
 import {RenderFooter} from "../../../littleComponents/footer/footer.tsx";
 import forSearch from '/forSearch.png'
-import {type ChangeEvent, type MouseEvent, useEffect, useState} from "react";
+import {type ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import type {RootState} from "@reduxjs/toolkit/query";
 import {useNavigate} from "react-router";
@@ -15,15 +15,14 @@ import {
     tonalityReducer
 } from "../../../../store/Slices/histogramReducer.ts";
 import * as React from "react";
-import {PostObjectSearch} from "../../../../store/objectsearch.tsx";
-import {PostHistograms} from "../../../../store/histogram.tsx";
+import {PostObjectSearch} from '../../../../store/fetches/objectsearch.tsx'
+import {PostHistograms} from '../../../../store/fetches/histogram.tsx'
 
 const RenderSearch = () => {
     /*ошибковые переменные*/
     const [innError, setInnError] = useState('');
     const [limitError, setLimitError] = useState('');
     const [dateError, setDateError] = useState('');
-    const [isSearchDisabled, setSearchDisabled] = useState(false);
 
     /*всякие нужные переменные*/
     const navigate = useNavigate()
@@ -72,7 +71,7 @@ const RenderSearch = () => {
         if (sumForCheck % 11 % 10 == Number(INN[9])) {
             result = true
         } else {
-            setInnError('Неправильный ИНН: неверное контрольное число')
+            setInnError('Неверное контрольное число')
         }
 
         return result;
@@ -92,7 +91,7 @@ const RenderSearch = () => {
         else if (/[^0-9]/.test(e.target.value))
             setLimitError('Введите корректное число')
         else if (Number(e.target.value) < 1 || Number(e.target.value) > 1000)
-            setLimitError('Количество документов может быть от 1 до 1000')
+            setLimitError('Кол-во документов может быть от 1 до 1000')
         else
             setLimitError('')
     }
@@ -124,10 +123,11 @@ const RenderSearch = () => {
         else
             dispatch(endDateReducer(value))
 
-        if(newDate >= setStartDate && setEndDate >= setStartDate)
-            setDateError('')
-        else
-            setDateError('Диапазон дат указан неверно')
+        if (newDate >= setStartDate && setEndDate >= setStartDate) {
+            setDateError('');
+        } else {
+            setDateError('Введите корректные данные');
+        }
     }
 
     const takeStartDate = (e: ChangeEvent<HTMLInputElement>) => {
@@ -164,12 +164,12 @@ const RenderSearch = () => {
                         <div className={style.main__properties}>
                             <label>ИНН компании *</label>
                             <input
-                                className={style.text__inside}
+                                className={`${style.text__inside} ${innError ? style.input__error : ''}`}
                                 placeholder="10 цифр"
                                 maxLength={10}
                                 onChange={checkINN}
                             />
-
+                            {innError && <p className={style.error__message}>{innError}</p>}
                             <label className={style.tonality}>Тональность</label>
                             <select name='tonality' onClick={(e) => handleSelect(e)}>
                                 <option value="any">Любая</option>
@@ -178,14 +178,21 @@ const RenderSearch = () => {
                             </select>
                             <label>Количество документов в выдаче *</label>
                             <input
-                                className={style.text__inside}
+                                className={`${style.text__inside} ${limitError ? style.input__error : ''}`}
                                 placeholder="от 1 до 1000"
                                 onChange={checkLimit}
                             />
+                            {limitError && <p className={style.error__message}>{limitError}</p>}
                             <label>Диапазон поиска *</label>
                             <div className={style.range}>
-                                <input type="date" onChange={(e) => takeStartDate(e)}></input>
-                                <input type="date" onChange={(e) => takeEndDate(e)}></input>
+                                <div className={style.dates}>
+                                    <input type="date" onChange={(e) => takeStartDate(e)}></input>
+                                    {dateError && <p className={style.error__message}>{dateError}</p>}
+                                </div>
+                                <div className={style.dates}>
+                                    <input type="date" onChange={(e) => takeEndDate(e)}></input>
+                                    {dateError && <p className={style.error__message}>{dateError}</p>}
+                                </div>
                             </div>
                         </div>
                         <div className={style.additional__properties}>

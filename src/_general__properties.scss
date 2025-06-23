@@ -8,6 +8,16 @@ $other__color__yellow: #FFB64F;
 $other__color__green: #7CE3E1;
 $other__color__blue: #5970FF;
 
+.error__message {
+  color: #ff1a1c;
+  font-size: 14px;
+  text-align: center;
+}
+
+.input__error {
+  border: 1px solid #ff1a1c;
+}
+
 @font-face {
   font-family: "Inter-regular";
   src: local("Inter-regular"),

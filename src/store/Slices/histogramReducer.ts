@@ -1,5 +1,5 @@
-import type {HistogramState} from "../types";
-import { PostHistograms } from "../histogram";
+import type {HistogramState} from '../types.ts';
+import { PostHistograms } from '../fetches/histogram.tsx'
 import {type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: HistogramState = {
@@ -33,29 +33,34 @@ const histogramReducer = createSlice({
                 tonality: action.payload
             };
         },
+
         docslimitReducer: (state, action) => {
             state.histogramsParams = {
                 ...state.histogramsParams,
                 docslimit: action.payload
             };
         },
+
         setCheckbox: (state, action: PayloadAction<{ index: number; checked: boolean }>) => {
             const newCheckboxes = [...state.histogramsParams.checkboxes];
             newCheckboxes[action.payload.index] = action.payload.checked;
             state.histogramsParams.checkboxes = newCheckboxes;
         },
+
         startDateReducer: (state, action) => {
             state.histogramsParams = {
                 ...state.histogramsParams,
                 startDate: action.payload
             };
         },
+
         endDateReducer: (state, action) => {
             state.histogramsParams = {
                 ...state.histogramsParams,
                 endDate: action.payload
             };
         },
+
         resetFormReducer: (state) => {
             state.histogramsParams = {
                 accessToken: '',
@@ -82,7 +87,7 @@ const histogramReducer = createSlice({
             })
             .addCase(PostHistograms.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.payload?.message || 'Ошибка загрузки';
+                state.error = action.payload?.message || 'Ошибка загрузки'; // Установка ошибки, если есть
             });
     },
 });

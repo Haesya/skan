@@ -1,4 +1,4 @@
-@import '../../../general__properties';
+@import '../../../../_general__properties.css';
 
 .main__page__main {
   grid-area: main;
@@ -65,7 +65,5 @@
 }
 
 .tariffs{
-  display: flex;
   gap: 40px;
-  justify-content: center;
 }

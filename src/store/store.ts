@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import authReducer from "../../src/store/Slices/authReducer";
+import authReducer from "./Slices/authReducer";
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import histogramReducer from "../../src/store/Slices/histogramReducer.ts";
-import objectsearchReducer from "../../src/store/Slices/objectsearchReducer";
-import documentsReducer from "../../src/store/Slices/documentsReducer";
+import histogramReducer from "./Slices/histogramReducer";
+import objectsearchReducer from './Slices/objectSearchReducer.ts';
+import documentsReducer from "./Slices/documentsReducer";
 
 const persistConfig = {
   key: 'root',
@@ -21,14 +21,10 @@ const rootReducer = combineReducers ({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-      serializableCheck: false,
-      mmutableCheck: false,
-  }),
+  reducer: persistedReducer
 });
 
-export const persistor = persistStore(store);
+persistStore(store);
 
 export default store;
 
